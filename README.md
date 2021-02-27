@@ -20,6 +20,7 @@ Lasteroids uses the [love2d](https://love2d.org/) engine, so you'll likely want 
 * [hump](https://github.com/vrld/hump) - vectors and gamestate
 * [Binocles](https://github.com/maromaroXD/Binocles) - debugging, for when you're feeling introspective
 * [Hyperspace](https://www.pixelsagas.com/?download=hyperspace) - an awesome font from Pixel Sagas
+* [boon](https://github.com/camchenry/boon) - for builds
 
 ## Thanks To
 
