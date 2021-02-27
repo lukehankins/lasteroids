@@ -1,3 +1,10 @@
+# Local things
+NOTES.txt
+./release/*
+Makefile
+.DS_Store
+*.love
+
 # Compiled Lua sources
 luac.out
 
