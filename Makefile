@@ -20,8 +20,11 @@ clean:
 	@$(BOON) clean
 
 release/Lasteroids.love: $(wildcard *.lua) $(wildcard %/%.lua)
-	@$(BOON)  love download 11.3
-	@$(BOON)  build . --target all
+	@$(BOON) love download 11.3
+	@$(BOON) build . --target all
+	@cd release && mkdir Lasteroids && cp -r ../LICENSE ../README.md Lasteroids.app Lasteroids
+	@cd release && zip -r -m Lasteroids-macos.zip Lasteroids
+	@cd release && rm -rf Lasteroids.app
 
 build: release/Lasteroids.love 
 
