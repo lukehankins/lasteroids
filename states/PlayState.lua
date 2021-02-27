@@ -30,7 +30,6 @@ function PlayState:enter()
         e:add(Scoreboard(p))
         e.name = "Player " .. p
         Game.engine:addEntity(e)
-        print("Adding " .. p .. " pc " .. Game.player_count)
     end
 
     -- Add Rocks
@@ -51,6 +50,8 @@ function PlayState:update()
     if Game.engine:getEntityCount("IsRock") == 0 then
         Game.level = Game.level + 1
         AddRocks(4 * Game.level)
+    else
+        Game.watched = Game.engine:getEntityCount("IsRock")
     end
 
 end

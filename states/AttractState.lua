@@ -21,25 +21,6 @@ function AttractState:enter()
     Game.engine:addSystem(RenderSystem(), "draw")
 
     AddRocks(10)
-    -- Add Rocks
-    -- for i = 1, 10, 1 do
-    --     local e = Entity()
-    --     -- TODO: regenerate if it's near the player
-    --     local x = love.math.random(0, love.graphics.getWidth())
-    --     local y = love.math.random(0, love.graphics.getHeight())
-    --     local v = Vector.new(x, y)
-    --     local dr = love.math.random(-200, 200) / 100
-    --     e:add(Movement(Vector.randomDirection(1, 10), dr))
-    --     local size = 32
-    --     local poly = generate_asteroid(size)
-    --     local b = HC.polygon(unpack(poly))
-    --     b:moveTo(x, y)
-    --     b.entity = e
-    --     e:add(Body(b))
-    --     e:add(IsRock(i, size))
-    --     print(v.unpack, dr)
-    --     Game.engine:addEntity(e)
-    -- end
 end
 
 function AttractState:update(dt)
@@ -100,7 +81,7 @@ function AttractState:draw()
                          ((love.graphics.getWidth() - font:getWidth(text)) / 2),
                          450, font:getWidth(text), "center")
 
-    -- escape to quotient
+    -- escape to quit
     love.graphics.setFont(Font["tiny"])
     love.graphics.setColor(0, 1, 0)
     local text = "<ESC> to quit"

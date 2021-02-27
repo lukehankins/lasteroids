@@ -1,7 +1,6 @@
 CollisionSystem = class("CollisionSystem", System)
 
 function CollisionSystem:update()
-    -- get list of all collisions
     local collisions = {}
     for _, v in pairs(self.targets.body) do
         local vbody = v:get("Body").body
@@ -25,7 +24,7 @@ function CollisionSystem:update()
                 to_destroy[#to_destroy + 1] = actor
             end
         end
-        -- player vs anything not my child
+        -- player vs (depends on friendly_mode)
         if actor:has("IsPlayer") then
             if hit:has("IsRock") or
                 (not (Game.friendly_mode) and hit:getParent().id ~= actor.id) then
@@ -43,8 +42,6 @@ function CollisionSystem:update()
                         actor:get("IsPlayer").shield_until =
                             love.timer.getTime() + 0.3
                     else
-                        print("he ded")
-                        -- XXX what assumes a body?
                         HC.remove(actor:get("Body").body)
                         actor:remove("Body")
                     end
@@ -54,8 +51,7 @@ function CollisionSystem:update()
         -- rock vs player or bullet
         if actor:has("IsRock") then
             if hit:has("IsPlayer") or hit:has("IsBullet") then
-                -- rock vs bullet
-                -- rock vs player
+                -- rock vs bullet or player
                 to_destroy[#to_destroy + 1] = actor
                 local new_size = actor:get("IsRock").size / 2
                 if new_size > 4 then
@@ -69,8 +65,10 @@ function CollisionSystem:update()
                         local dr = love.math.random(-200, 200) / 100
                         new_rock:add(Movement(
                                          Vector.randomDirection(
-                                             30 + 32 - new_size,
-                                             30 + 32 - new_size), dr))
+                                             30 + (5 * Game.level) +
+                                                 (32 - new_size), 30 +
+                                                 (5 * Game.level) +
+                                                 (32 - new_size)), dr))
                         local b = HC.polygon(unpack(new_poly))
                         b:moveTo(x, y)
                         b.entity = new_rock
